@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Marmota Inc.</Company>
+    <Authors>wmper</Authors>
+    <Description>A simple, cross-platform of api gateway building by .net core.</Description>
+    <PackageProjectUrl>https://github.com/wmper/Marmota</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/wmper/Marmota</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>api gateway,.net core</PackageTags>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+  </PropertyGroup>
+
+</Project>
