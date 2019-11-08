@@ -18,8 +18,7 @@ namespace Marmota
 
         public IMarmotaBuilder Build()
         {
-            // TODO Service
-            // services.AddSingleton<Ttest, Test>();
+            Services.ConfigureOptions<MarmotaOptions>();
 
             return this;
         }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Marmota.Middleware
+namespace Marmota.Middleware.Extensions
 {
     public static class HttpRequestHandlerMiddlewareExtensions
     {
