@@ -33,6 +33,7 @@ namespace Marmota.Middleware
 
                 if (httpResponseMessage.Content.Headers.ContentLength != null)
                 {
+                    context.Response.ContentType = httpResponseMessage.Content.Headers.ContentType.MediaType;
                     context.Response.ContentLength = httpResponseMessage.Content.Headers.ContentLength;
                 }
 
