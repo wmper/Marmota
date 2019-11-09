@@ -15,21 +15,14 @@ namespace Marmota.Middleware
 
         public async Task Invoke(HttpContext context, IHttpClientFactory httpClientFactory)
         {
-            var httpRequestMessage = new HttpRequestMessage()
+            if (context.Items.TryGetValue(MarmotaHttpContextItems.Requetst, out object value))
             {
-                //Method = new HttpMethod(context.Request.Method),
-                //Content = null,
-                //Headers = null,
-                //Properties = null,
-                //RequestUri = new System.Uri() { },
-                //Version = null
-            };
+                var client = httpClientFactory.CreateClient();
 
-            var client = httpClientFactory.CreateClient();
+                var response = client.SendAsync((HttpRequestMessage)value, context.RequestAborted);
 
-            var response = client.SendAsync(httpRequestMessage, context.RequestAborted);
-
-            context.Items.Add("Response", response);
+                context.Items.Add(MarmotaHttpContextItems.Response, response);
+            }
 
             await _next(context);
         }
