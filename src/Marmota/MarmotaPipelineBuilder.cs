@@ -1,5 +1,5 @@
 ﻿using Marmota.Abstractions;
-using Marmota.Middleware;
+using Marmota.Extensions;
 using Microsoft.AspNetCore.Builder;
 
 namespace Marmota
@@ -15,11 +15,7 @@ namespace Marmota
 
         public IMarmotaPipelineBuilder Build()
         {
-            // try catch error
-            Builder.UseExceptionHandlerMiddleware();
-
-            // http request
-            Builder.UseHttpRequestHandlerMiddleware();
+            Builder.UseMarmotaPipeline();
 
             return this;
         }
