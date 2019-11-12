@@ -17,7 +17,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marmota.Consul", "src\Marmo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "samples\ApiGateway\ApiGateway.csproj", "{CB8BE3A1-4663-48F5-A1DA-1118CB97F419}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Marmota.Abstractions", "Marmota.Abstractions\Marmota.Abstractions.csproj", "{E96B2CBD-7AC5-42DD-9D9E-D153BA9BFB27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marmota.Abstractions", "src\Marmota.Abstractions\Marmota.Abstractions.csproj", "{277A8A9F-801C-4503-A228-5B37F2C713E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{344A4CD7-6125-4FD1-8DB7-06D5B9446A39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B364CC6E-244E-4F81-896D-D246474B321F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +50,10 @@ Global
 		{CB8BE3A1-4663-48F5-A1DA-1118CB97F419}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB8BE3A1-4663-48F5-A1DA-1118CB97F419}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB8BE3A1-4663-48F5-A1DA-1118CB97F419}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E96B2CBD-7AC5-42DD-9D9E-D153BA9BFB27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E96B2CBD-7AC5-42DD-9D9E-D153BA9BFB27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E96B2CBD-7AC5-42DD-9D9E-D153BA9BFB27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E96B2CBD-7AC5-42DD-9D9E-D153BA9BFB27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{277A8A9F-801C-4503-A228-5B37F2C713E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277A8A9F-801C-4503-A228-5B37F2C713E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{277A8A9F-801C-4503-A228-5B37F2C713E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{277A8A9F-801C-4503-A228-5B37F2C713E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,7 +63,7 @@ Global
 		{5F9E891B-3B41-420F-BABC-3207C8C13B7E} = {8E47C9FE-6AE7-40FD-B9D8-B0A5A230E37C}
 		{E1B4EF1D-43F8-4CE8-B835-F7336237572B} = {8E47C9FE-6AE7-40FD-B9D8-B0A5A230E37C}
 		{CB8BE3A1-4663-48F5-A1DA-1118CB97F419} = {CFF5934A-5BC6-4478-834E-4F858C5DAC5C}
-		{E96B2CBD-7AC5-42DD-9D9E-D153BA9BFB27} = {8E47C9FE-6AE7-40FD-B9D8-B0A5A230E37C}
+		{277A8A9F-801C-4503-A228-5B37F2C713E4} = {8E47C9FE-6AE7-40FD-B9D8-B0A5A230E37C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A3715EB-BCC7-4DF5-9BCE-06C2A6E54873}

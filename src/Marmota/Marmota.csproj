@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Marmota.Abstractions\Marmota.Abstractions.csproj" />
+    <ProjectReference Include="..\Marmota.Abstractions\Marmota.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
