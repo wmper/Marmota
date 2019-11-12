@@ -1,0 +1,11 @@
+{
+  "Routes": [
+    {
+      "Service": "DemoService",
+      "Path": {
+        "Up": "/*",
+        "Down": "/api/*"
+      }
+    }
+  ]
+}
