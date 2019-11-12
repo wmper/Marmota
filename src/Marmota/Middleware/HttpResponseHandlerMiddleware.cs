@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Marmota.Abstractions;
 
 namespace Marmota.Middleware
 {
@@ -31,7 +32,7 @@ namespace Marmota.Middleware
                     return;
                 }
 
-                if (httpResponseMessage.Content.Headers.ContentLength != null)
+                if (httpResponseMessage.Content.Headers.ContentLength.HasValue)
                 {
                     context.Response.ContentType = httpResponseMessage.Content.Headers.ContentType.MediaType;
                     context.Response.ContentLength = httpResponseMessage.Content.Headers.ContentLength;

@@ -10,6 +10,12 @@ namespace Marmota.Extensions
             // try catch error
             builder.UseExceptionHandlerMiddleware();
 
+            //http response
+            builder.UseHttpResponseHandlerMiddleware();
+
+            // map url
+            builder.UseMapUrlHandlerMiddleware();
+
             // http request
             builder.UseHttpRequestHandlerMiddleware();
 

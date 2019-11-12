@@ -1,4 +1,4 @@
-﻿namespace Marmota
+﻿namespace Marmota.Abstractions
 {
     public static class MarmotaHttpContextItems
     {

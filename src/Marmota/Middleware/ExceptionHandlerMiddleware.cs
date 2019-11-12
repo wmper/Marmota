@@ -19,9 +19,9 @@ namespace Marmota.Middleware
             {
                 await _next(context);
             }
-            catch (Exception) when (context.RequestAborted.IsCancellationRequested)
+            catch (Exception ex) when (context.RequestAborted.IsCancellationRequested)
             {
-
+                await context.Response.WriteAsync(ex.Message);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Marmota.Abstractions;
+using Microsoft.AspNetCore.Http;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -17,11 +18,16 @@ namespace Marmota.Middleware
         {
             if (context.Items.TryGetValue(MarmotaHttpContextItems.Requetst, out object value))
             {
-                var client = httpClientFactory.CreateClient();
+                var request = (HttpRequestMessage)value;
 
-                var response = client.SendAsync((HttpRequestMessage)value, context.RequestAborted);
+                using var client = httpClientFactory.CreateClient();
 
-                context.Items.Add(MarmotaHttpContextItems.Response, response);
+                var response = await client.SendAsync(request, context.RequestAborted);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    context.Items.Add(MarmotaHttpContextItems.Response, response);
+                }
             }
 
             await _next(context);

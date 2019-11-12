@@ -18,7 +18,13 @@ namespace Marmota
 
         public IMarmotaBuilder Build()
         {
-            Services.ConfigureOptions<MarmotaOptions>();
+            var config = Configuration.Get<MarmotaOptions>();
+
+            Services.Configure<MarmotaOptions>(optinos =>
+            {
+                optinos.Routes = config.Routes;
+            });
+            Services.AddHttpClient();
 
             return this;
         }
