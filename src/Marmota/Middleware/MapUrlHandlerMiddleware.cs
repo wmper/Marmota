@@ -57,7 +57,7 @@ namespace Marmota.Middleware
 
                 foreach (var item in context.Request.Headers)
                 {
-                    httpRequestMessage.Headers.Add(item.Key, item.Value.ToArray());
+                    httpRequestMessage.Headers.TryAddWithoutValidation(item.Key, item.Value.ToArray());
                 }
 
                 context.Items.Add(MarmotaHttpContextItems.Requetst, httpRequestMessage);
