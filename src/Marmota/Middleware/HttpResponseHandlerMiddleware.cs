@@ -26,11 +26,6 @@ namespace Marmota.Middleware
             {
                 var httpResponseMessage = (HttpResponseMessage)value;
 
-                foreach (var item in httpResponseMessage.Headers)
-                {
-                    CheckHeadler(context, item);
-                }
-
                 if (!context.Response.HasStarted)
                 {
                     context.Response.StatusCode = (int)httpResponseMessage.StatusCode;
@@ -43,7 +38,7 @@ namespace Marmota.Middleware
 
                 if (httpResponseMessage.Content.Headers.ContentLength.HasValue)
                 {
-                    context.Response.ContentType = httpResponseMessage.Content.Headers.ContentType.MediaType;
+                    context.Response.ContentType = httpResponseMessage.Content.Headers.ContentType.ToString();
                     context.Response.ContentLength = httpResponseMessage.Content.Headers.ContentLength;
                 }
 
