@@ -27,7 +27,7 @@ namespace Marmota.Middleware
                 var up = route.Path.Up.ToLower();
                 var path = context.Request.PathBase.Value.ToLower();
 
-                if (up == path || up == "/*")
+                if (up == "/*" || up == path)
                 {
                     url = $"http://localhost:5000{path}";
 
@@ -57,7 +57,7 @@ namespace Marmota.Middleware
 
                 foreach (var item in context.Request.Headers)
                 {
-                    httpRequestMessage.Headers.Add(item.Key, item.Value.ToArray());
+                    httpRequestMessage.Headers.TryAddWithoutValidation(item.Key, item.Value.ToArray());
                 }
 
                 context.Items.Add(MarmotaHttpContextItems.Requetst, httpRequestMessage);
@@ -102,11 +102,11 @@ namespace Marmota.Middleware
         {
             using (stream)
             {
-                using (var memStream = new MemoryStream())
-                {
-                    await stream.CopyToAsync(memStream);
-                    return memStream.ToArray();
-                }
+                using var memStream = new MemoryStream();
+
+                await stream.CopyToAsync(memStream);
+
+                return memStream.ToArray();
             }
         }
     }

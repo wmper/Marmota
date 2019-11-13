@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
+﻿using Marmota.Abstractions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
-using Marmota.Abstractions;
+using System.Threading.Tasks;
 
 namespace Marmota.Middleware
 {
@@ -34,18 +38,31 @@ namespace Marmota.Middleware
 
                 if (httpResponseMessage.Content.Headers.ContentLength.HasValue)
                 {
-                    context.Response.ContentType = httpResponseMessage.Content.Headers.ContentType.MediaType;
+                    context.Response.ContentType = httpResponseMessage.Content.Headers.ContentType.ToString();
                     context.Response.ContentLength = httpResponseMessage.Content.Headers.ContentLength;
+                }
+
+                foreach (var item in httpResponseMessage.Content.Headers)
+                {
+                    CheckHeadler(context, item);
                 }
 
                 var content = await httpResponseMessage.Content.ReadAsStreamAsync();
                 using (content)
                 {
-                    if (httpResponseMessage.StatusCode != System.Net.HttpStatusCode.NotModified && context.Response.ContentLength != 0)
+                    if (httpResponseMessage.StatusCode != HttpStatusCode.NotModified && context.Response.ContentLength != 0)
                     {
                         await content.CopyToAsync(context.Response.Body);
                     }
                 }
+            }
+        }
+
+        private void CheckHeadler(HttpContext context, KeyValuePair<string, IEnumerable<string>> item)
+        {
+            if (!context.Response.Headers.ContainsKey(item.Key))
+            {
+                context.Response.Headers.Add(item.Key, new StringValues(item.Value.ToArray()));
             }
         }
     }

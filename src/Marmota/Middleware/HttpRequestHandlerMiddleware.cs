@@ -21,7 +21,6 @@ namespace Marmota.Middleware
                 var request = (HttpRequestMessage)value;
 
                 using var client = httpClientFactory.CreateClient();
-
                 var response = await client.SendAsync(request, context.RequestAborted);
 
                 if (response.IsSuccessStatusCode)
