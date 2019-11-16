@@ -19,17 +19,21 @@ namespace Marmota.Middleware
 
         public async Task Invoke(HttpContext context, IOptions<MarmotaOptions> options)
         {
-            var routes = options.Value.Routes;
             var url = string.Empty;
+            var path = context.Request.Path.Value.ToLower();
 
-            foreach (var route in routes)
+            foreach (var route in options.Value.Routes)
             {
+                var scheme = route.Scheme;
+                var host = route.Host;
+                var port = route.Port;
+                url = $"{scheme}://{host}:{port}";
+
                 var up = route.Path.Up.ToLower();
-                var path = context.Request.PathBase.Value.ToLower();
 
                 if (up == "/*" || up == path)
                 {
-                    url = $"http://localhost:5000{path}";
+                    url += $"{path}";
 
                     break;
                 }
@@ -39,7 +43,7 @@ namespace Marmota.Middleware
                     var tempUp = up.Substring(0, up.Length - up.LastIndexOf("*") - 1);
                     if (path.StartsWith(tempUp))
                     {
-                        url = $"http://localhost:5000{tempUp}{path}";
+                        url += $"{path}";
 
                         break;
                     }
@@ -102,11 +106,12 @@ namespace Marmota.Middleware
         {
             using (stream)
             {
-                using var memStream = new MemoryStream();
+                using (var memStream = new MemoryStream())
+                {
+                    await stream.CopyToAsync(memStream);
 
-                await stream.CopyToAsync(memStream);
-
-                return memStream.ToArray();
+                    return memStream.ToArray();
+                }
             }
         }
     }

@@ -13,6 +13,8 @@ namespace ApiGateway
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                   .UseKestrel()
+                   .UseUrls("http://*:59620")
                    .ConfigureAppConfiguration((context, config) =>
                     {
                         config.SetBasePath(context.HostingEnvironment.ContentRootPath);

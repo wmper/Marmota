@@ -24,6 +24,7 @@ namespace Marmota
             {
                 optinos.Routes = config.Routes;
             });
+            
             Services.AddHttpClient();
 
             return this;
