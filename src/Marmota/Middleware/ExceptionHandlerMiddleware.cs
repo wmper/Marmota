@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace Marmota.Middleware
 {
@@ -19,9 +20,11 @@ namespace Marmota.Middleware
             {
                 await _next(context);
             }
-            catch (Exception ex) when (context.RequestAborted.IsCancellationRequested)
+            catch (Exception ex)
             {
-                await context.Response.WriteAsync(ex.Message);
+                context.Response.StatusCode = 500;
+
+                await context.Response.Body.WriteAsync(Encoding.UTF8.GetBytes(ex.Message));
             }
         }
     }

@@ -10,6 +10,9 @@ namespace Marmota.Extensions
             // try catch error
             builder.UseExceptionHandlerMiddleware();
 
+            // healthcheck
+            builder.UseHealthCheckHandlerMiddleware();
+
             //http response
             builder.UseHttpResponseHandlerMiddleware();
 

@@ -7,5 +7,15 @@
         "Down": "/api/*"
       }
     }
-  ]
+  ],
+  "Consul": {
+    "Address": "http://192.168.137.100",
+    "Port": 8500,
+    "Service": {
+      "Name": "ApiGateway",
+      "Scheme": "http",
+      "Host": "192.168.137.1",
+      "Port": 59620
+    }
+  }
 }
