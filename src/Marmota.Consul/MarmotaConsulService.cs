@@ -18,24 +18,25 @@ namespace Marmota.Consul
 
         private readonly AgentServiceRegistration serviceRegistration;
         private readonly IConsulClient _client;
-        private readonly string path = string.Empty;
+        private readonly string path;
+        private readonly ConsulOptions config;
 
         public MarmotaConsulService(IConfiguration configuration)
         {
-            var config = configuration.Get<ConsulOptions>();
+            config = configuration.Get<ConsulOptions>();
 
             var consul = config.Consul;
-            var address = consul.Service.Address;
-            if (string.IsNullOrWhiteSpace(address) || address == "127.0.0.1")
+            var host = consul.Service.Host;
+            if (string.IsNullOrWhiteSpace(host) || host == "127.0.0.1")
             {
-                address = ip;
+                host = ip;
             }
 
             serviceRegistration = new AgentServiceRegistration()
             {
                 ID = Guid.NewGuid().ToString(),
                 Name = consul.Service.Name,
-                Address = address,
+                Address = host,
                 Port = consul.Service.Port
             };
 
@@ -54,11 +55,12 @@ namespace Marmota.Consul
 
         public void ServiceRegister()
         {
+            var service = config.Consul.Service;
             serviceRegistration.Check = new AgentServiceCheck()
             {
                 DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(5),
                 Interval = TimeSpan.FromSeconds(3),
-                HTTP = $"http://{serviceRegistration.Address}:{serviceRegistration.Port}{path}",
+                HTTP = $"{service.Scheme}://{service.Host}:{service.Port}/{path.TrimStart('/')}",
                 Timeout = TimeSpan.FromSeconds(5)
             };
 

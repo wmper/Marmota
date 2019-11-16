@@ -12,7 +12,7 @@ namespace Marmota.Abstractions
     {
         public string Service { get; set; }
         public string Scheme { get; set; } = "http";
-        public string Host { get; set; } = "localhost";
+        public string Host { get; set; } = "127.0.0.1";
         public int Port { get; set; } = 5000;
         public Path Path { get; set; }
     }

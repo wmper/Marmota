@@ -12,8 +12,9 @@
     "Address": "http://192.168.137.100",
     "Port": 8500,
     "Service": {
-      "Address": "localhost",
       "Name": "ApiGateway",
+      "Scheme": "http",
+      "Host": "192.168.137.1",
       "Port": 59620
     }
   }

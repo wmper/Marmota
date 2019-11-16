@@ -17,7 +17,8 @@ namespace Marmota.Consul
     internal class Service
     {
         public string Name { get; set; } = "ApiGateway";
-        public string Address { get; set; } = "192.168.137.1";
-        public int Port { get; set; } = 59620;
+        public string Scheme { get; set; } = "http";
+        public string Host { get; set; } = "127.0.0.1";
+        public int Port { get; set; } = 5000;
     }
 }
